@@ -1,6 +1,9 @@
 fn main() {
     println!("This is the start of the code :::::");
     let mut board = [' '; 9];
+    let player = [ 'X', 'O'];
+
+    let mut turn = 0;
     
     loop{
         let index = get_index_from_input();
@@ -16,8 +19,15 @@ fn main() {
 
         let index = index.unwrap();
 
-        board[index] = 'X';
+        if board[index] != ' ' {
+            println!("you cant rewrite the already marked position");
+            continue;
+        }
+
+        board[index] = player[turn];
         print_board(board);
+
+        turn = (turn + 1 ) % 2 ;
     }
 
 
